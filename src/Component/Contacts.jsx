@@ -1,15 +1,21 @@
 import { useState } from "react";
 import ContactList from "./ContactList";
-import inputs from "../Constans/inputs";
+import inputs from "../Constans/inputs.js";
+import { v4 } from "uuid";
 function Contacts() {
   const [alert, setAlert] = useState("");
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState({
+    id: "",
     name: "",
     lastName: "",
     email: "",
     phone: "",
   });
+  const deletHandeler = (id)=>{
+    const newContacts = contacts.filter((contact)=>contact.id !== id);
+    setContacts(newContacts);
+  }
 
   const changeHandeler = (event) => {
     setContact((contact) => ({
@@ -29,14 +35,9 @@ function Contacts() {
       return;
     }
     setAlert("");
-    setContacts((contacts) => [...contacts, contact]);
-    setContact({
-      name: "",
-      lastName: "",
-      email: "",
-      phone: "",
-    });
-    console.log(contacts)
+    const newContact = { ...contact, id: v4() };
+    setContacts((contacts) => [...contacts, newContact]);
+    setContact({ name: "", lastName: "", email: "", phone: "" });
   };
   return (
     <div>
@@ -51,10 +52,10 @@ function Contacts() {
             onChange={changeHandeler}
           />
         ))}
-        <button onClick={addHandeler}>Add contact</button>
+        <button onClick={addHandeler}>Add concat</button>
       </div>
-      <div>{alert && <p>{alert}</p>}</div>
-      <ContactList contacts={contacts} />
+      <div>{alert ? <p>{alert}</p> : null}</div>
+      <ContactList contacts={contacts} deletHandeler = {deletHandeler} />
     </div>
   );
 }

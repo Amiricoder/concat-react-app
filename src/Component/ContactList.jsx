@@ -1,10 +1,20 @@
 
-function ContactList(props) {
+import ContactItem from "./ContactItem";
+function ContactList({ contacts ,deletHandeler}) {
   return (
     <div>
-        <p>contacts</p>
+      <h3>Contact List</h3>
+      {contacts.length ? (
+        <ul>
+          {contacts.map((contact) => (
+            <ContactItem key={contact.id} data={contact} deletHandeler={deletHandeler}/>
+          ))}
+        </ul>
+      ) : (
+        <p>No Contacts Yet!</p>
+      )}
     </div>
-  )
+  );
 }
 
-export default ContactList
+export default ContactList;
