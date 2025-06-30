@@ -1,0 +1,27 @@
+
+.container{
+    text-align: center;
+    margin: 50px 0;
+    color: gray;
+}
+
+.container h1{
+    color: #403fff;
+    margin-bottom: 20px;
+}
+
+.container p  a{
+    text-decoration: none;
+    color: #304ffe;
+    cursor: pointer;
+    background-color: #bbdefd;
+    padding: 3px 5px;
+    border-radius: 5px;
+    transition: .2s all ease-in-out;
+}
+
+.container p a:hover {
+    color: #bbdefd;
+    background-color: #304ffe;
+}
+
