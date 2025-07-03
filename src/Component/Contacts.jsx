@@ -1,7 +1,8 @@
 import { useState } from "react";
-import ContactList from "./ContactList";
-import inputs from "../Constans/inputs.js";
+import inputs from "../Constans/inputs";
 import { v4 } from "uuid";
+import ContactList from "./ContactList";
+
 function Contacts() {
   const [alert, setAlert] = useState("");
   const [contacts, setContacts] = useState([]);
@@ -12,8 +13,9 @@ function Contacts() {
     email: "",
     phone: "",
   });
+
   const deletHandeler = (id)=>{
-    const newContacts = contacts.filter((contact)=>contact.id !== id);
+    const newContacts = contacts.filter((contact)=> contact.id !== id);
     setContacts(newContacts);
   }
 
@@ -34,10 +36,14 @@ function Contacts() {
       setAlert("pleas enter valid data");
       return;
     }
-    setAlert("");
     const newContact = { ...contact, id: v4() };
     setContacts((contacts) => [...contacts, newContact]);
-    setContact({ name: "", lastName: "", email: "", phone: "" });
+    setContact({
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    });
   };
   return (
     <div>
@@ -52,10 +58,10 @@ function Contacts() {
             onChange={changeHandeler}
           />
         ))}
-        <button onClick={addHandeler}>Add concat</button>
+        <button onClick={addHandeler}>Add Contact</button>
       </div>
       <div>{alert ? <p>{alert}</p> : null}</div>
-      <ContactList contacts={contacts} deletHandeler = {deletHandeler} />
+      <ContactList contacts={contacts} deletHandeler={deletHandeler} />
     </div>
   );
 }
