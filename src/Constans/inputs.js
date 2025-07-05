@@ -4,4 +4,5 @@ const inputs = [
   { type: "email", name: "email", placeholder: "Email" },
   { type: "number", name: "phone", placeholder: "Phone" },
 ];
+
 export default inputs;

@@ -5,7 +5,7 @@ function Header() {
     <div className={styles.container}>
       <h1>Concat App</h1>
       <p>
-        <a href="https://botostart.ir">Botostart</a> | React.js Full Course
+        <a href="#">Contact app</a> | React.js Full Course
       </p>
     </div>
   );

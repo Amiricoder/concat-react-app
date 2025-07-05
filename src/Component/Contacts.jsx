@@ -1,11 +1,11 @@
 import { useState } from "react";
 import inputs from "../Constans/inputs";
-import { v4 } from "uuid";
 import ContactList from "./ContactList";
-
+import { v4 } from "uuid";
+import styles from "./Contacts.module.css";
 function Contacts() {
-  const [alert, setAlert] = useState("");
   const [contacts, setContacts] = useState([]);
+  const [alert, setAlert] = useState("");
   const [contact, setContact] = useState({
     id: "",
     name: "",
@@ -14,10 +14,10 @@ function Contacts() {
     phone: "",
   });
 
-  const deletHandeler = (id)=>{
-    const newContacts = contacts.filter((contact)=> contact.id !== id);
+  const deletHandeler = (id) => {
+    const newContacts = contacts.filter((contact) => contact.id !== id);
     setContacts(newContacts);
-  }
+  };
 
   const changeHandeler = (event) => {
     setContact((contact) => ({
@@ -29,11 +29,11 @@ function Contacts() {
   const addHandeler = () => {
     if (
       !contact.name ||
-      !contact.lastName ||
       !contact.email ||
+      !contact.lastName ||
       !contact.phone
     ) {
-      setAlert("pleas enter valid data");
+      setAlert("Pleas enter valid data !!");
       return;
     }
     const newContact = { ...contact, id: v4() };
@@ -44,10 +44,11 @@ function Contacts() {
       email: "",
       phone: "",
     });
+    console.log(contacts);
   };
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.form}>
         {inputs.map((input, index) => (
           <input
             key={index}
@@ -60,7 +61,7 @@ function Contacts() {
         ))}
         <button onClick={addHandeler}>Add Contact</button>
       </div>
-      <div>{alert ? <p>{alert}</p> : null}</div>
+      <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
       <ContactList contacts={contacts} deletHandeler={deletHandeler} />
     </div>
   );
